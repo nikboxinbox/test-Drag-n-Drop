@@ -25,7 +25,6 @@
       <p>X: {{ normalizedX.toFixed(2) }}</p>
 
       <p>Y: {{ normalizedY.toFixed(2) }}</p>
-      <!-- <div>{{ dragging }}</div> -->
     </div>
   </div>
 </template>
@@ -52,7 +51,7 @@ export default {
       this.mouseY = event.clientY;
       this.arenaRect = this.$refs.arena.getBoundingClientRect();
 
-      this.updateNormalizedCoordinates();
+      this.normalizedCoordinates();
       document.addEventListener("mouseup", this.onMouseUpOutside);
     },
 
@@ -66,7 +65,7 @@ export default {
         this.mouseY = event.clientY;
 
         this.checkBoundaries();
-        this.updateNormalizedCoordinates();
+        this.normalizedCoordinates();
       }
     },
 
@@ -89,7 +88,7 @@ export default {
         this.ballY = this.arenaRect.height;
     },
 
-    updateNormalizedCoordinates() {
+    normalizedCoordinates() {
       this.normalizedX = (this.ballX / this.arenaRect.width) * 2 - 1;
       this.normalizedY = -(this.ballY / this.arenaRect.height) * 2 + 1;
     },
